@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "3336709f-43ee-4313-b687-c9d474128b67",
+		"name": "ChatGPT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "10823722-3336709f-43ee-4313-b687-c9d474128b67"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "models",
+					"item": [
+						{
+							"name": "Models",
+							"id": "f0b7587e-f4cd-4e6c-b38b-affe185b90d3",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "OpenAI-Organization",
+										"value": "org-NgmmfWoLIfO7746hKWDFTXd4",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{endpoint}}/v1/models",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"v1",
+										"models"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Find Model",
+							"id": "7e901b65-2462-4dc7-88cc-cd5bb58cdcf1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{endpoint}}/v1/models/{{model}}",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"v1",
+										"models",
+										"{{model}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "1efbed02-e150-4681-8f58-251c14bcb054"
+				},
+				{
+					"name": "completions",
+					"item": [
+						{
+							"name": "Create Completions",
+							"id": "5d40fa82-f161-45ed-b834-460be73b8d47",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"model\": \"text-davinci-003\",\r\n    \"prompt\": \"mais 1\",\r\n    \"temperature\": 0,\r\n    \"max_tokens\": 7\r\n}"
+								},
+								"url": {
+									"raw": "{{endpoint}}/v1/completions",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"v1",
+										"completions"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "c1e288d0-44fb-45d6-ae84-7d2970ba60ac"
+				},
+				{
+					"name": "edits",
+					"item": [
+						{
+							"name": "Edits",
+							"id": "e326cd40-35fb-42aa-b7ac-8f7f0c0c19a4",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"model\": \"{{model}}\",\n  \"input\": \"Vezes 3\",\n  \"instruction\": \"2\"\n}"
+								},
+								"url": {
+									"raw": "{{endpoint}}/v1/edits",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"v1",
+										"edits"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "0b666fcf-3546-4010-aba4-82d02d55d3cc"
+				},
+				{
+					"name": "images",
+					"item": [
+						{
+							"name": "Generations",
+							"id": "24ae4d95-a914-4b04-a44c-5a7573e3e4a1",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"prompt\": \"Estrela\",\n    \"n\": 2,\n    \"size\": \"256x256\"\n}"
+								},
+								"url": {
+									"raw": "{{endpoint}}/v1/images/generations",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"v1",
+										"images",
+										"generations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edits",
+							"id": "de24bfa1-2996-4947-b2bd-2c1de712ac18",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer YOUR_API_KEY"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"type": "file",
+											"key": "image",
+											"src": "otter.png"
+										},
+										{
+											"type": "file",
+											"key": "mask",
+											"src": "mask.png"
+										},
+										{
+											"type": "text",
+											"key": "prompt",
+											"value": "A cute baby sea otter wearing a beret"
+										},
+										{
+											"type": "text",
+											"key": "n",
+											"value": "2"
+										},
+										{
+											"type": "text",
+											"key": "size",
+											"value": "1024x1024"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{endpoint}}/v1/images/edits",
+									"host": [
+										"{{endpoint}}"
+									],
+									"path": [
+										"v1",
+										"images",
+										"edits"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "68c0dab9-ad75-4cbe-85b6-b7d81a9413ea"
+				}
+			],
+			"id": "fd7d5114-9d29-457a-ba6b-b4a44f1344aa"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4b649a88-dce7-4da8-a956-a58dceac4241",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d55e76fd-116b-4679-b905-6d4cbe8c82e6",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "d722f5b0-4aac-45b6-a19d-e75d5eefb296",
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "6c580c3f-a77f-4f38-843e-cf509566a514",
+			"key": "endpoint",
+			"value": "https://api.openai.com",
+			"type": "string"
+		}
+	]
+}
